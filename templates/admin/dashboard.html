@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block title %}Dashboard{% endblock %} {% block css
+%}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/dashboard.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="dashboard-welcome">
+  <h1 id="welcomeText">Welcome to Admin Dashboard</h1>
+
+  <!-- ✅ ROLE DISPLAY -->
+  <div class="role-badge">Role: <span id="userRole">-</span></div>
+
+  <p class="sub-text">You are successfully logged in.</p>
+</div>
+
+<!-- 🔐 DASHBOARD PROTECTION + DATA LOAD -->
+<script>
+  async function loadDashboard() {
+    const token = localStorage.getItem('token');
+
+    // ❌ No token → login
+    if (!token) {
+      window.location.href = '/login';
+      return;
+    }
+
+    const res = await fetch('/dashboard', {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
+
+    // ❌ Token invalid / expired
+    if (res.status === 401 || res.status === 422) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+      return;
+    }
+
+    const data = await res.json();
+
+    // ✅ UPDATE UI
+    document.getElementById('welcomeText').innerText = data.message;
+    document.getElementById('userRole').innerText =
+      data.user.role.toUpperCase();
+  }
+
+  loadDashboard();
+</script>
+{% endblock %}

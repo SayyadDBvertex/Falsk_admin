@@ -1,0 +1,124 @@
+/* sidebar-blogs.css */
+/* Clean content-focused blog admin sidebar */
+
+:root {
+  --bg: #0f172a;
+  --bg-light: #111827;
+  --accent: #2563eb;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --hover: #1e293b;
+  --radius: 10px;
+  --width: 240px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--width);
+  height: 100vh;
+  background: linear-gradient(180deg, var(--bg), var(--bg-light));
+  color: var(--text);
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.35);
+  animation: slideIn 0.35s ease;
+}
+
+/* Brand */
+.brand {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.brand .logo {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto 8px;
+  border-radius: 10px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.brand .title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* Nav */
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
+}
+
+.nav-link:hover {
+  background: var(--hover);
+  color: #fff;
+  padding-left: 18px;
+}
+
+.nav-link.active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Icons */
+.icon {
+  font-size: 18px;
+}
+
+/* Logout */
+.logout {
+  margin-top: auto;
+  color: #fca5a5;
+}
+
+.logout:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fecaca;
+}
+
+/* Footer */
+.foot {
+  font-size: 12px;
+  text-align: center;
+  color: var(--muted);
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

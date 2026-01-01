@@ -1,0 +1,62 @@
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="logo">Admin</div>
+  </div>
+
+  <ul class="nav">
+    <li class="nav-item">
+      <a href="/dashboard-page" class="nav-link active">
+        <span class="icon">📝</span>
+        <span class="label">All Blogs</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="/blogs/create" class="nav-link">
+        <span class="icon">➕</span>
+        <span class="label">Add Blog</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="/blogs/categories" class="nav-link">
+        <span class="icon">📂</span>
+        <span class="label">Categories</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="/logout" class="nav-link logout">
+        <span class="icon">🚪</span>
+        <span class="label">Logout</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="foot">Blog Panel • v1.0</div>
+</aside>
+
+<!-- ✅ SIDEBAR SCRIPT -->
+<script>
+  // 🔐 Logout (JWT clear)
+  document.querySelector('.logout')?.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    // remove JWT token
+    localStorage.removeItem('token');
+
+    // redirect to login
+    window.location.href = '/login';
+  });
+
+  // ✅ Active link highlight (auto)
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.sidebar .nav-link').forEach((link) => {
+    if (link.getAttribute('href') === currentPath) {
+      document
+        .querySelectorAll('.sidebar .nav-link')
+        .forEach((l) => l.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+</script>
